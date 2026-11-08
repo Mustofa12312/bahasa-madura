@@ -1,29 +1,17 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Kamus Madura-Indo</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-</head>
-<body>
-	<div id="body">
-		<h1>Kamus Madura Online</h1>
-		<div class="opt">
-			<input type="radio" name="mode" id="mode-m2i" value="m2i" checked>
-			<label for="mode-m2i">Madura ke Indonesia</label>
-			<br>
-			<input type="radio" name="mode" id="mode-i2m" value="i2m">
-			<label for="mode-i2m">Indonesia ke Madura</label>
-		</div>
-		<textarea id="input"></textarea>
-		<div id="highlight"></div>
-		<div id="result"></div>
-	</div>
-	<div class="foot"><i>(C) Wildan Mubarok 2019. Saya tidak bertanggung jawab atas ketidak keakuratan kamus ini. Harap maklum :')</i></div>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="util.js"></script>
-	<script src="main.js"></script>
-</body>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kamus Madura Digital — Platform Bahasa & Kosakata Madura Terlengkap</title>
+    <meta name="description" content="Kamus digital Bahasa Madura - Indonesia dua arah dengan pencarian cerdas, tingkatan tutur (Enja'-Iya, Engghi-Enten, Engghi-Bhunten), contoh kalimat, dan pusat pembelajaran." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-ivory text-madura-text antialiased selection:bg-gold selection:text-navy min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
