@@ -148,3 +148,4 @@ bahasa-madura/
 
 ## 📄 Lisensi & Kontribusi
 Aplikasi ini dikembangkan di bawah lisensi terbuka [MIT](LICENSE). Kontribusi komunitas sangat diapresiasi! Silakan baca panduan berkontribusi di [`CONTRIBUTING.md`](CONTRIBUTING.md).
+

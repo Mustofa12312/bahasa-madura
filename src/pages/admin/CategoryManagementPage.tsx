@@ -285,3 +285,4 @@ export const CategoryManagementPage: React.FC = () => {
     </div>
   );
 };
+

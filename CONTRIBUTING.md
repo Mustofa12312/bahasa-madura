@@ -46,3 +46,4 @@ Jika Anda menemukan kesalahan aplikasi atau ketidakakuratan padanan kata:
 1. Buka tab **Issues** di repositori GitHub.
 2. Jelaskan masalah secara spesifik (lampirkan tangkapan layar, pesan error konsol, atau peramban yang digunakan).
 3. Berikan langkah-langkah untuk mereproduksi masalah tersebut (*steps to reproduce*).
+

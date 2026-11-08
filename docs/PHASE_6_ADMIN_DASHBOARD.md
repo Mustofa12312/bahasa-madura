@@ -55,3 +55,4 @@ Seluruh fitur admin dilindungi di bawah layout terdedikasi [`AdminLayout.tsx`](f
 ## 4. Hasil Uji Kompilasi & Kode
 - **TypeScript**: Lulus 0 kesalahan tipe (`tsc` exit 0).
 - **Vite Production Bundling**: Berhasil membangun 34 chunks modular terisolasi dengan total ukuran bundle gzip yang sangat efisien (~302 kB untuk vendor & index utama).
+

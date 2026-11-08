@@ -60,3 +60,4 @@ Konfigurasi file [`vercel.json`](file:///mnt/DATA/Projects/bahasa%20madura/verce
 - [ ] Filter tingkat tutur (*Ondhagghâ Bhâsa*) menampilkan badge warna yang tepat.
 - [ ] Fitur bookmark favorit dan riwayat pencarian dapat menyimpan dan menghapus data pada peramban.
 - [ ] Halaman Admin (`/admin`) menampilkan metrik, tabel kosakata, antrean kontribusi, dan manajemen pengguna.
+

@@ -39,3 +39,4 @@ Seluruh perubahan penting pada proyek **Kamus Madura Digital** didokumentasikan 
 ### Diperbaiki (Fixed)
 - Memperbaiki potensi *infinite re-render loop* pada `dictionaryService.search` dengan memurnikan fungsi dari pemanggilan mutasi state riwayat pencarian selama fase render React.
 - Memperbaiki sinkronisasi parameter URL pada hook `useDictionarySearch` menggunakan pengecekan diferensial nilai.
+

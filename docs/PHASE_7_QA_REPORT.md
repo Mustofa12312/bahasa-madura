@@ -68,3 +68,4 @@ Pustaka pengujian otomatis terkonfigurasi dengan Vitest v2.1.9 dan dijalankan me
   - `dist/assets/vendor-*.js`: ~81 kB.
   - `dist/assets/index-*.css`: ~7.3 kB (Tailwind utility terpangkas melalui PurgeCSS).
   - Potongan halaman modular rata-rata berkisar antara 1 kB – 3 kB gzip, menjamin waktu muat pertama (*First Contentful Paint*) sangat cepat (<0.8 detik).
+
