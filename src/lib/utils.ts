@@ -100,3 +100,19 @@ export function formatDate(dateString: string | number): string {
   }
 }
 
+export function formatRelativeTime(dateString: string | number): string {
+  try {
+    const now = Date.now();
+    const d = new Date(dateString).getTime();
+    const diffSec = Math.floor((now - d) / 1000);
+
+    if (diffSec < 60) return 'Baru saja';
+    if (diffSec < 3600) return `${Math.floor(diffSec / 60)} menit lalu`;
+    if (diffSec < 86400) return `${Math.floor(diffSec / 3600)} jam lalu`;
+    if (diffSec < 2592000) return `${Math.floor(diffSec / 86400)} hari lalu`;
+    return formatDate(dateString);
+  } catch {
+    return String(dateString);
+  }
+}
+

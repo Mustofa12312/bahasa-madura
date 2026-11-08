@@ -10,6 +10,7 @@ import {
   AdminStats 
 } from '../types';
 import { normalizeMadurese, slugify } from '../lib/utils';
+export { normalizeMadurese, slugify };
 import { MORPHOLOGICAL_AFFIXES, POPULAR_WORDS } from '../constants';
 
 // In-Memory Storage & Indexes
@@ -89,6 +90,11 @@ export const dictionaryService = {
       ...cat,
       wordCount: allWords.filter(w => w.category_slug === slug).length
     };
+  },
+
+  // Get all words
+  getAllWords(): Word[] {
+    return allWords;
   },
 
   // Get word by slug
