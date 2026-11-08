@@ -1,0 +1,32 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-size: 1.2em;
+	font-family: sans-serif;
+	background: linear-gradient(whitesmoke, white) no-repeat;
+	position: relative;
+}
+
+h1 {
+	text-align: center;
+}
+
+#input {
+	width: 100%;
+	resize: vertical;
+	font-size: 1.2em;
+}
+
+#result {
+	display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+
+.foot {
+	font-size: 0.8em;
+	color: gray;
+	margin-top: 3em;
+	background-color: white;
+}
