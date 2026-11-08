@@ -89,7 +89,7 @@ export const AdminDashboardPage: React.FC = () => {
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-madura-muted">Menunggu Review</span>
             <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
-              <MessageSquareCheck className="w-4 h-4" />
+              <MessageSquare className="w-4 h-4" />
             </div>
           </div>
           <div className="text-3xl font-serif font-bold text-amber-600">{stats.totalPendingContributions}</div>
