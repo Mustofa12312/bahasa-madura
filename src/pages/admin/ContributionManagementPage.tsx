@@ -73,7 +73,7 @@ export const ContributionManagementPage: React.FC = () => {
       {/* List */}
       {filtered.length === 0 ? (
         <EmptyState
-          icon={<MessageSquareCheck className="w-7 h-7 text-stone-400" />}
+          icon={<MessageSquare className="w-7 h-7 text-stone-400" />}
           title="Tidak Ada Usulan"
           description="Tidak ada usulan kosakata pada status ini."
         />
