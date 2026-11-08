@@ -15,7 +15,7 @@ export const AdminLayout: React.FC = () => {
   const menuItems = [
     { label: 'Overview', href: '/admin', icon: LayoutDashboard },
     { label: 'Kelola Kosakata', href: '/admin/kamus', icon: BookA },
-    { label: 'Moderasi Kontribusi', href: '/admin/kontribusi', icon: MessageSquareCheck },
+    { label: 'Moderasi Kontribusi', href: '/admin/kontribusi', icon: MessageSquare },
     { label: 'Bulk Import / Export', href: '/admin/import', icon: UploadCloud },
     { label: 'Kelola Artikel', href: '/admin/artikel', icon: GraduationCap },
   ];
