@@ -23,6 +23,15 @@ export const HomePage: React.FC = () => {
   const [query, setQuery] = useState('');
   const [direction, setDirection] = useState<SearchDirection>('m2i');
   const [selectedWord, setSelectedWord] = useState<Word | null>(null);
+  const [recentSearches, setRecentSearches] = useState(() => dictionaryService.getSearchHistory().slice(0, 4));
+
+  React.useEffect(() => {
+    const handleHistoryUpdate = () => {
+      setRecentSearches(dictionaryService.getSearchHistory().slice(0, 4));
+    };
+    window.addEventListener('history-updated', handleHistoryUpdate);
+    return () => window.removeEventListener('history-updated', handleHistoryUpdate);
+  }, []);
 
   const dailyWord = dictionaryService.getDailyWord();
   const popularWords = dictionaryService.getPopularWords();
@@ -87,8 +96,28 @@ export const HomePage: React.FC = () => {
               />
             </form>
 
+            {/* Recent Searches if any */}
+            {recentSearches.length > 0 && (
+              <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5 text-xs">
+                <span className="text-stone-400 font-medium">Pencarian terakhir:</span>
+                {recentSearches.map((r) => (
+                  <button
+                    key={r.id}
+                    type="button"
+                    onClick={() => {
+                      setQuery(r.query);
+                      setDirection(r.direction);
+                    }}
+                    className="px-2.5 py-0.5 rounded-lg bg-stone-100 text-navy hover:bg-stone-200 font-medium transition-colors"
+                  >
+                    {r.query}
+                  </button>
+                ))}
+              </div>
+            )}
+
             {/* Popular quick clicks */}
-            <div className="mt-3.5 flex flex-wrap items-center justify-center gap-1.5 text-xs">
+            <div className="mt-2.5 flex flex-wrap items-center justify-center gap-1.5 text-xs">
               <span className="text-madura-muted font-medium">Kata populer:</span>
               {popularWords.slice(0, 5).map((p, idx) => (
                 <button

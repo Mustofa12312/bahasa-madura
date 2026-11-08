@@ -7,12 +7,14 @@ export interface SpeechLevelBadgeProps {
   level: SpeechLevel;
   showIcon?: boolean;
   className?: string;
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 export const SpeechLevelBadge: React.FC<SpeechLevelBadgeProps> = ({
   level,
   showIcon = true,
-  className = ''
+  className = '',
+  onClick
 }) => {
   const meta = getSpeechLevelMeta(level);
 
@@ -31,6 +33,7 @@ export const SpeechLevelBadge: React.FC<SpeechLevelBadgeProps> = ({
 
   return (
     <span
+      onClick={onClick}
       title={`${meta.name} — ${meta.description}`}
       className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border shadow-xs transition-colors cursor-help ${meta.badgeClass} ${className}`}
     >
