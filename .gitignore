@@ -1,4 +1,6 @@
 node_modules
+dist
+.env
 kata2.txt
 prd.md
 pro.md
