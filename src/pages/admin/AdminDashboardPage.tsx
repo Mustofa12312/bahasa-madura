@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { 
   BookA, 
   Layers, 
-  MessageSquareCheck, 
+  MessageSquare, 
   CheckCircle2, 
   Search, 
   TrendingUp, 
