@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  MessageSquareCheck, 
+  MessageSquare, 
   Check, 
   X, 
   Clock, 
