@@ -1,59 +1,77 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { PublicLayout } from '../layouts/PublicLayout';
 import { AdminLayout } from '../layouts/AdminLayout';
+import { LoadingSpinner } from '../../components/ui/LoadingSpinner';
+import { ErrorBoundary } from '../../components/ui/ErrorBoundary';
 
-// Public Pages
-import { HomePage } from '../../pages/public/HomePage';
-import { DictionaryPage } from '../../pages/public/DictionaryPage';
-import { WordDetailPage } from '../../pages/public/WordDetailPage';
-import { CategoriesPage } from '../../pages/public/CategoriesPage';
-import { CategoryDetailPage } from '../../pages/public/CategoryDetailPage';
-import { DailyWordPage } from '../../pages/public/DailyWordPage';
-import { LearningPage } from '../../pages/public/LearningPage';
-import { ArticleDetailPage } from '../../pages/public/ArticleDetailPage';
-import { AboutPage } from '../../pages/public/AboutPage';
+// Lazy-loaded Public Pages
+const HomePage = lazy(() => import('../../pages/public/HomePage').then(m => ({ default: m.HomePage })));
+const DictionaryPage = lazy(() => import('../../pages/public/DictionaryPage').then(m => ({ default: m.DictionaryPage })));
+const WordDetailPage = lazy(() => import('../../pages/public/WordDetailPage').then(m => ({ default: m.WordDetailPage })));
+const CategoriesPage = lazy(() => import('../../pages/public/CategoriesPage').then(m => ({ default: m.CategoriesPage })));
+const CategoryDetailPage = lazy(() => import('../../pages/public/CategoryDetailPage').then(m => ({ default: m.CategoryDetailPage })));
+const DailyWordPage = lazy(() => import('../../pages/public/DailyWordPage').then(m => ({ default: m.DailyWordPage })));
+const LearningPage = lazy(() => import('../../pages/public/LearningPage').then(m => ({ default: m.LearningPage })));
+const ArticleDetailPage = lazy(() => import('../../pages/public/ArticleDetailPage').then(m => ({ default: m.ArticleDetailPage })));
+const AboutPage = lazy(() => import('../../pages/public/AboutPage').then(m => ({ default: m.AboutPage })));
 
-// User Pages
-import { FavoritesPage } from '../../pages/user/FavoritesPage';
-import { HistoryPage } from '../../pages/user/HistoryPage';
-import { ContributePage } from '../../pages/user/ContributePage';
+// Lazy-loaded User Pages
+const FavoritesPage = lazy(() => import('../../pages/user/FavoritesPage').then(m => ({ default: m.FavoritesPage })));
+const HistoryPage = lazy(() => import('../../pages/user/HistoryPage').then(m => ({ default: m.HistoryPage })));
+const ContributePage = lazy(() => import('../../pages/user/ContributePage').then(m => ({ default: m.ContributePage })));
 
-// Admin Pages
-import { AdminDashboardPage } from '../../pages/admin/AdminDashboardPage';
-import { DictionaryManagementPage } from '../../pages/admin/DictionaryManagementPage';
-import { ContributionManagementPage } from '../../pages/admin/ContributionManagementPage';
-import { BulkImportExportPage } from '../../pages/admin/BulkImportExportPage';
-import { LearningManagementPage } from '../../pages/admin/LearningManagementPage';
+// Lazy-loaded Admin Pages
+const AdminDashboardPage = lazy(() => import('../../pages/admin/AdminDashboardPage').then(m => ({ default: m.AdminDashboardPage })));
+const DictionaryManagementPage = lazy(() => import('../../pages/admin/DictionaryManagementPage').then(m => ({ default: m.DictionaryManagementPage })));
+const ContributionManagementPage = lazy(() => import('../../pages/admin/ContributionManagementPage').then(m => ({ default: m.ContributionManagementPage })));
+const BulkImportExportPage = lazy(() => import('../../pages/admin/BulkImportExportPage').then(m => ({ default: m.BulkImportExportPage })));
+const LearningManagementPage = lazy(() => import('../../pages/admin/LearningManagementPage').then(m => ({ default: m.LearningManagementPage })));
+
+const PageLoader = () => (
+  <div className="min-h-[50vh] flex items-center justify-center p-8">
+    <LoadingSpinner size="lg" label="Memuat halaman..." />
+  </div>
+);
+
+const withSuspense = (Component: React.ComponentType) => (
+  <ErrorBoundary>
+    <Suspense fallback={<PageLoader />}>
+      <Component />
+    </Suspense>
+  </ErrorBoundary>
+);
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <PublicLayout />,
+    errorElement: <ErrorBoundary />,
     children: [
-      { index: true, element: <HomePage /> },
-      { path: 'kamus', element: <DictionaryPage /> },
-      { path: 'kamus/:slug', element: <WordDetailPage /> },
-      { path: 'kategori', element: <CategoriesPage /> },
-      { path: 'kategori/:slug', element: <CategoryDetailPage /> },
-      { path: 'kata-hari-ini', element: <DailyWordPage /> },
-      { path: 'belajar', element: <LearningPage /> },
-      { path: 'belajar/:slug', element: <ArticleDetailPage /> },
-      { path: 'tentang', element: <AboutPage /> },
-      { path: 'kontribusi', element: <ContributePage /> },
-      { path: 'favorit', element: <FavoritesPage /> },
-      { path: 'riwayat', element: <HistoryPage /> },
+      { index: true, element: withSuspense(HomePage) },
+      { path: 'kamus', element: withSuspense(DictionaryPage) },
+      { path: 'kamus/:slug', element: withSuspense(WordDetailPage) },
+      { path: 'kategori', element: withSuspense(CategoriesPage) },
+      { path: 'kategori/:slug', element: withSuspense(CategoryDetailPage) },
+      { path: 'kata-hari-ini', element: withSuspense(DailyWordPage) },
+      { path: 'belajar', element: withSuspense(LearningPage) },
+      { path: 'belajar/:slug', element: withSuspense(ArticleDetailPage) },
+      { path: 'tentang', element: withSuspense(AboutPage) },
+      { path: 'kontribusi', element: withSuspense(ContributePage) },
+      { path: 'favorit', element: withSuspense(FavoritesPage) },
+      { path: 'riwayat', element: withSuspense(HistoryPage) },
     ],
   },
   {
     path: '/admin',
     element: <AdminLayout />,
+    errorElement: <ErrorBoundary />,
     children: [
-      { index: true, element: <AdminDashboardPage /> },
-      { path: 'kamus', element: <DictionaryManagementPage /> },
-      { path: 'kontribusi', element: <ContributionManagementPage /> },
-      { path: 'import', element: <BulkImportExportPage /> },
-      { path: 'artikel', element: <LearningManagementPage /> },
+      { index: true, element: withSuspense(AdminDashboardPage) },
+      { path: 'kamus', element: withSuspense(DictionaryManagementPage) },
+      { path: 'kontribusi', element: withSuspense(ContributionManagementPage) },
+      { path: 'import', element: withSuspense(BulkImportExportPage) },
+      { path: 'artikel', element: withSuspense(LearningManagementPage) },
     ],
   },
   {
@@ -61,4 +79,3 @@ export const router = createBrowserRouter([
     element: <Navigate to="/" replace />,
   },
 ]);
-

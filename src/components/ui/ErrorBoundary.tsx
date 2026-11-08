@@ -3,7 +3,7 @@ import { AlertTriangle, RotateCcw, Home } from 'lucide-react';
 import { Button } from './Button';
 
 interface Props {
-  children: ReactNode;
+  children?: ReactNode;
   fallback?: ReactNode;
 }
 
