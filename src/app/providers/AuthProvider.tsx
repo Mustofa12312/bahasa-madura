@@ -104,12 +104,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     if (!error && data.user) {
       // Create profile row
-      await supabase.from('profiles').insert({
-        id: data.user.id,
-        full_name: fullName,
-        email: email,
-        role: 'user',
-      });
+      await supabase.from('profiles').insert([
+        {
+          id: data.user.id,
+          full_name: fullName,
+          email: email,
+          role: 'user',
+        }
+      ] as any);
     }
 
     return { error: error ? new Error(error.message) : null };

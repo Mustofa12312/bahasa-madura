@@ -95,3 +95,4 @@ export const TabsContent: React.FC<{
 
   return <div className={cn('animate-in fade-in duration-200', className)}>{children}</div>;
 };
+
