@@ -22,3 +22,4 @@ export function useDebounce<T>(value: T, delay: number = 250): T {
 
   return debouncedValue;
 }
+

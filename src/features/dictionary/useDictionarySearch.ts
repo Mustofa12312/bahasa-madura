@@ -97,3 +97,4 @@ export function useDictionarySearch(options: UseDictionarySearchOptions = {}) {
     resetFilters: handleReset,
   };
 }
+
