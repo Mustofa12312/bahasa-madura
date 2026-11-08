@@ -225,3 +225,4 @@ export const WordDetailPage: React.FC = () => {
     </div>
   );
 };
+

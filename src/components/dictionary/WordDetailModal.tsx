@@ -198,3 +198,4 @@ export const WordDetailModal: React.FC<WordDetailModalProps> = ({ word, isOpen, 
     </Modal>
   );
 };
+

@@ -17,3 +17,4 @@ export const QueryProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     </QueryClientProvider>
   );
 };
+

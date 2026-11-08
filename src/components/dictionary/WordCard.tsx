@@ -111,3 +111,4 @@ export const WordCard: React.FC<WordCardProps> = ({ word, onSelect }) => {
     </div>
   );
 };
+

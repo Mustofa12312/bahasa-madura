@@ -184,3 +184,4 @@ CREATE INDEX idx_translations_trgm ON word_translations USING gin (translation g
    - `INSERT`: Pengguna terautentikasi (`auth.uid() = user_id`).
    - `SELECT`: Pembuat usulan melihat miliknya, admin melihat semua usulan.
    - `UPDATE`: Hanya admin (untuk mengubah status persetujuan).
+

@@ -125,3 +125,4 @@ src/
 │   └── user/        # FavoritesPage, HistoryPage, ContributePage
 └── types/           # TypeScript interfaces (Word, SpeechLevel, Category, etc.)
 ```
+

@@ -59,3 +59,4 @@ VITE_APP_TITLE=Kamus Madura Digital
    Script ini akan membaca `kamus.json` dan menghasilkan:
    - `src/data/seed-dictionary.json` (Dataset terstruktur untuk in-browser search engine)
    - `supabase/seed/seed.sql` (Script SQL untuk mengimport ke database PostgreSQL / Supabase)
+

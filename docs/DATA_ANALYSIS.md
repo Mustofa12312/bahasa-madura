@@ -96,3 +96,4 @@ Hal ini membuktikan pentingnya pengelompokan entri leksikal relasional pada skem
 4. **Integritas 100% Data Asli:**
    - Tidak ada penghapusan baris kamus asli.
    - Script migrasi `scripts/migrate-dictionary.py` menghasilkan dataset relasional terstruktur yang dapat diimport ke PostgreSQL / Supabase dan disajikan langsung ke web app.
+

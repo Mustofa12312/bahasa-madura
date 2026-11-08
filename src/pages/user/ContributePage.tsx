@@ -226,3 +226,4 @@ export const ContributePage: React.FC = () => {
     </div>
   );
 };
+

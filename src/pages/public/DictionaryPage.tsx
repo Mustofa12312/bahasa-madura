@@ -236,3 +236,4 @@ export const DictionaryPage: React.FC = () => {
     </div>
   );
 };
+

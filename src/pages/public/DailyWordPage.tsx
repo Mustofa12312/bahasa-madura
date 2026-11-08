@@ -144,3 +144,4 @@ export const DailyWordPage: React.FC = () => {
     </div>
   );
 };
+

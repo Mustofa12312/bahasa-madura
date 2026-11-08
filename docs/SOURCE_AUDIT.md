@@ -77,3 +77,4 @@ Algoritma lama di `util.js` menghapus diakritik untuk pencarian bebas aksen. Ars
 | **Fitur Admin** | Tidak ada | Dashboard analitik, CRUD Kosakata, Bulk Import/Export, Moderasi Kontribusi |
 | **Tingkat Tutur** | Tag teks mentah (kebanyakan kosong) | 3 Tingkat Tutur terstruktur (Enja'-Iya, Engghi-Enten, Engghi-Bhunten) |
 | **Aksesibilitas** | Tidak ada | Standar WCAG 2.1 AA, keyboard shortcut (`/`), responsif mobile-first |
+

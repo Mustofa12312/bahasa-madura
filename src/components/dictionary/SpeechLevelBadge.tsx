@@ -39,3 +39,4 @@ export const SpeechLevelBadge: React.FC<SpeechLevelBadgeProps> = ({
     </span>
   );
 };
+

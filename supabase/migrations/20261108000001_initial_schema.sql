@@ -194,3 +194,4 @@ CREATE POLICY "Users can insert contributions" ON contributions
 CREATE POLICY "Users can view own contributions" ON contributions
     FOR SELECT
     USING (auth.uid() = user_id);
+

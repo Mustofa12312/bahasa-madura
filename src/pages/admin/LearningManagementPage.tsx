@@ -70,3 +70,4 @@ export const LearningManagementPage: React.FC = () => {
     </div>
   );
 };
+

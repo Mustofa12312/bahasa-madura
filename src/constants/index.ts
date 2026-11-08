@@ -130,3 +130,4 @@ Pada Kamus Madura Digital, Anda dapat mencari kata baik dengan mengetikkan aksen
    - Filosofi arsitektur pemukiman tradisional Madura yang mencerminkan ikatan erat kekeluargaan dan musyawarah.`
   }
 ];
+

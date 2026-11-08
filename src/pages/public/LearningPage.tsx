@@ -55,3 +55,4 @@ export const LearningPage: React.FC = () => {
     </div>
   );
 };
+

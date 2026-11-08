@@ -100,3 +100,4 @@ export interface AdminStats {
   topSearches: { query: string; count: number }[];
   speechLevelBreakdown: Record<SpeechLevel, number>;
 }
+

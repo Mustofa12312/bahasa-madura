@@ -83,3 +83,4 @@ export interface Contribution {
 Supabase migrations akan dieksekusi melalui SQL script yang tersimpan di `supabase/migrations/20261108000001_initial_schema.sql`.
 
 Semua query CRUD pada level client dibungkus dengan TanStack Query hooks yang terisolasi (`useDictionarySearch`, `useWordDetail`, `useFavorites`, `useContributions`, `useAdminWords`).
+

@@ -28,3 +28,4 @@ export const DictionaryGridSkeleton: React.FC<{ count?: number }> = ({ count = 6
     </div>
   );
 };
+
