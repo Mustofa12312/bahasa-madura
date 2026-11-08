@@ -7,15 +7,15 @@ import {
   Check, 
   Share2, 
   BookOpen, 
-  Info, 
   Tag, 
   ChevronLeft, 
   ChevronRight,
   ShieldCheck,
-  PlusCircle
+  Globe
 } from 'lucide-react';
 import { dictionaryService } from '../../services/dictionaryService';
 import { SpeechLevelBadge } from '../../components/dictionary/SpeechLevelBadge';
+import { Breadcrumbs } from '../../components/ui/Breadcrumbs';
 import { getSpeechLevelMeta } from '../../lib/utils';
 import { useToast } from '../../components/ui/Toast';
 import { EmptyState } from '../../components/common/EmptyState';
@@ -29,6 +29,7 @@ export const WordDetailPage: React.FC = () => {
   const [copiedMeaning, setCopiedMeaning] = useState(false);
 
   const word = slug ? dictionaryService.getWordBySlug(slug) : undefined;
+  const { prevWord, nextWord } = slug ? dictionaryService.getAdjacentWords(slug) : {};
 
   if (!word) {
     return (
@@ -80,16 +81,44 @@ export const WordDetailPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
-      {/* Back button */}
-      <div>
-        <Link
-          to="/kamus"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-madura-muted hover:text-navy transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Kembali ke Pencarian</span>
-        </Link>
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
+      {/* Top Navigation Bar: Breadcrumbs & Prev/Next */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <Breadcrumbs
+          items={[
+            { label: 'Kamus', href: '/kamus' },
+            { label: word.category_name || 'Kosakata', href: word.category_slug ? `/kategori/${word.category_slug}` : '/kategori' },
+            { label: word.word },
+          ]}
+        />
+
+        <div className="flex items-center gap-2 self-end sm:self-auto text-xs">
+          {prevWord ? (
+            <Link
+              to={`/kamus/${prevWord.slug}`}
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl border border-madura-border bg-white text-navy font-semibold hover:bg-ivory-warm transition-colors shadow-xs"
+              title={`Sebelumnya: ${prevWord.word}`}
+            >
+              <ChevronLeft className="w-3.5 h-3.5" />
+              <span>{prevWord.word}</span>
+            </Link>
+          ) : (
+            <span className="px-3 py-1.5 rounded-xl border border-transparent text-stone-300 select-none">
+              &bull;
+            </span>
+          )}
+
+          {nextWord && (
+            <Link
+              to={`/kamus/${nextWord.slug}`}
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl border border-madura-border bg-white text-navy font-semibold hover:bg-ivory-warm transition-colors shadow-xs"
+              title={`Selanjutnya: ${nextWord.word}`}
+            >
+              <span>{nextWord.word}</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </Link>
+          )}
+        </div>
       </div>
 
       {/* Main Word Card */}
@@ -143,7 +172,7 @@ export const WordDetailPage: React.FC = () => {
         {word.translations && word.translations.length > 1 && (
           <div className="space-y-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-madura-muted">
-              Rincian Terjemahan ({word.translations.length})
+              Rincian Padanan Makna ({word.translations.length})
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {word.translations.map((t, idx) => (
@@ -192,6 +221,17 @@ export const WordDetailPage: React.FC = () => {
           </div>
         )}
 
+        {/* Dialect and Reference Notes */}
+        {word.notes && (
+          <div className="p-4 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-700 space-y-1">
+            <span className="font-bold text-navy flex items-center gap-1.5">
+              <Globe className="w-3.5 h-3.5 text-forest" />
+              <span>Catatan Dialek / Asal Kata</span>
+            </span>
+            <p>{word.notes}</p>
+          </div>
+        )}
+
         {/* Actions Bar */}
         <div className="pt-6 border-t border-madura-border flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-xs text-madura-muted">
@@ -222,7 +262,35 @@ export const WordDetailPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Bottom Prev / Next Word Footer */}
+      <div className="flex items-center justify-between p-4 rounded-2xl bg-white border border-madura-border shadow-xs text-xs font-semibold text-navy">
+        {prevWord ? (
+          <Link
+            to={`/kamus/${prevWord.slug}`}
+            className="flex items-center gap-2 hover:text-forest transition-colors"
+          >
+            <ChevronLeft className="w-4 h-4" />
+            <div>
+              <span className="text-[10px] text-madura-muted block">Kata Sebelumnya</span>
+              <span>{prevWord.word}</span>
+            </div>
+          </Link>
+        ) : <div />}
+
+        {nextWord ? (
+          <Link
+            to={`/kamus/${nextWord.slug}`}
+            className="flex items-center gap-2 hover:text-forest transition-colors text-right"
+          >
+            <div>
+              <span className="text-[10px] text-madura-muted block">Kata Selanjutnya</span>
+              <span>{nextWord.word}</span>
+            </div>
+            <ChevronRight className="w-4 h-4" />
+          </Link>
+        ) : <div />}
+      </div>
     </div>
   );
 };
-

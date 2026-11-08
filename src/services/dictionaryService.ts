@@ -101,6 +101,16 @@ export const dictionaryService = {
     return idIndex.get(id);
   },
 
+  // Get adjacent words for Previous/Next navigation
+  getAdjacentWords(currentSlug: string): { prevWord?: Word; nextWord?: Word } {
+    const currentIndex = allWords.findIndex(w => w.slug === currentSlug);
+    if (currentIndex === -1) return {};
+    return {
+      prevWord: currentIndex > 0 ? allWords[currentIndex - 1] : undefined,
+      nextWord: currentIndex < allWords.length - 1 ? allWords[currentIndex + 1] : undefined,
+    };
+  },
+
   // Heuristic Morphological Search
   checkMorphologicalAffixes(queryNorm: string): { original: string; suggestedRoot: string; affixType: string; meaning: string } | undefined {
     // Madurese prefixes
