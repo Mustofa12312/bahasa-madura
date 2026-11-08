@@ -6,7 +6,9 @@ import {
   UploadCloud, 
   MessageSquare, 
   ArrowLeft,
-  GraduationCap
+  GraduationCap,
+  Layers,
+  Users
 } from 'lucide-react';
 
 export const AdminLayout: React.FC = () => {
@@ -15,7 +17,9 @@ export const AdminLayout: React.FC = () => {
   const menuItems = [
     { label: 'Overview', href: '/admin', icon: LayoutDashboard },
     { label: 'Kelola Kosakata', href: '/admin/kamus', icon: BookA },
-    { label: 'Moderasi Kontribusi', href: '/admin/kontribusi', icon: MessageSquare },
+    { label: 'Kategori & Dialek', href: '/admin/kategori', icon: Layers },
+    { label: 'Moderasi Usulan', href: '/admin/kontribusi', icon: MessageSquare },
+    { label: 'Pengguna & Akses', href: '/admin/pengguna', icon: Users },
     { label: 'Bulk Import / Export', href: '/admin/import', icon: UploadCloud },
     { label: 'Kelola Artikel', href: '/admin/artikel', icon: GraduationCap },
   ];

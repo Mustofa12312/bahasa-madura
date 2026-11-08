@@ -27,7 +27,9 @@ const ProfilePage = lazy(() => import('../../pages/user/ProfilePage').then(m => 
 // Lazy-loaded Admin Pages
 const AdminDashboardPage = lazy(() => import('../../pages/admin/AdminDashboardPage').then(m => ({ default: m.AdminDashboardPage })));
 const DictionaryManagementPage = lazy(() => import('../../pages/admin/DictionaryManagementPage').then(m => ({ default: m.DictionaryManagementPage })));
+const CategoryManagementPage = lazy(() => import('../../pages/admin/CategoryManagementPage').then(m => ({ default: m.CategoryManagementPage })));
 const ContributionManagementPage = lazy(() => import('../../pages/admin/ContributionManagementPage').then(m => ({ default: m.ContributionManagementPage })));
+const UserManagementPage = lazy(() => import('../../pages/admin/UserManagementPage').then(m => ({ default: m.UserManagementPage })));
 const BulkImportExportPage = lazy(() => import('../../pages/admin/BulkImportExportPage').then(m => ({ default: m.BulkImportExportPage })));
 const LearningManagementPage = lazy(() => import('../../pages/admin/LearningManagementPage').then(m => ({ default: m.LearningManagementPage })));
 
@@ -75,7 +77,9 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: withSuspense(AdminDashboardPage) },
       { path: 'kamus', element: withSuspense(DictionaryManagementPage) },
+      { path: 'kategori', element: withSuspense(CategoryManagementPage) },
       { path: 'kontribusi', element: withSuspense(ContributionManagementPage) },
+      { path: 'pengguna', element: withSuspense(UserManagementPage) },
       { path: 'import', element: withSuspense(BulkImportExportPage) },
       { path: 'artikel', element: withSuspense(LearningManagementPage) },
     ],
