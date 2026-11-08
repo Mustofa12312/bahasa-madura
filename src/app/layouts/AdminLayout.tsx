@@ -4,7 +4,7 @@ import {
   LayoutDashboard, 
   BookA, 
   UploadCloud, 
-  MessageSquareCheck, 
+  MessageSquare, 
   ArrowLeft,
   GraduationCap
 } from 'lucide-react';
