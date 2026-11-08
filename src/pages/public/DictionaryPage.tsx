@@ -13,6 +13,7 @@ import { SlidersHorizontal, Lightbulb, ChevronLeft, ChevronRight, X, Sparkles } 
 export const DictionaryPage: React.FC = () => {
   const {
     query,
+    debouncedQuery,
     direction,
     speechLevel,
     category,
@@ -29,6 +30,12 @@ export const DictionaryPage: React.FC = () => {
 
   const [selectedWord, setSelectedWord] = useState<Word | null>(null);
   const categories = dictionaryService.getCategories();
+
+  React.useEffect(() => {
+    if (debouncedQuery && debouncedQuery.trim().length >= 2) {
+      dictionaryService.addSearchHistory(debouncedQuery.trim(), direction);
+    }
+  }, [debouncedQuery, direction]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">

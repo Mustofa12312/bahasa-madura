@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Bookmark, ArrowLeft, Trash2, Search } from 'lucide-react';
+import { Bookmark, ArrowLeft, Trash2, Search, Cloud, CheckCircle } from 'lucide-react';
 import { dictionaryService } from '../../services/dictionaryService';
 import { WordCard } from '../../components/dictionary/WordCard';
 import { WordDetailModal } from '../../components/dictionary/WordDetailModal';
 import { EmptyState } from '../../components/common/EmptyState';
 import { Word } from '../../types';
 import { useToast } from '../../components/ui/Toast';
+import { useAuth } from '../../app/providers/AuthProvider';
 
 export const FavoritesPage: React.FC = () => {
+  const { user } = useAuth();
   const [favoriteWords, setFavoriteWords] = useState<Word[]>([]);
   const [filterQuery, setFilterQuery] = useState('');
   const [selectedWord, setSelectedWord] = useState<Word | null>(null);
@@ -64,6 +66,24 @@ export const FavoritesPage: React.FC = () => {
           </button>
         )}
       </div>
+
+      {/* Sync Status Banner */}
+      {!user ? (
+        <div className="p-4 rounded-2xl bg-ivory-warm border border-madura-border flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-2 text-stone-600">
+            <Cloud className="w-4 h-4 text-forest flex-shrink-0" />
+            <span>Kata favorit saat ini tersimpan di peramban lokal. Masuk akun untuk menyinkronkan di semua perangkat.</span>
+          </div>
+          <Link to="/login" className="font-bold text-forest hover:underline flex-shrink-0">
+            Masuk / Daftar Akun &rarr;
+          </Link>
+        </div>
+      ) : (
+        <div className="p-3 px-4 rounded-2xl bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs flex items-center gap-2">
+          <CheckCircle className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+          <span>Tersinkronisasi dengan akun <strong>{user.email}</strong></span>
+        </div>
+      )}
 
       {favoriteWords.length > 0 && (
         <div className="relative max-w-md">

@@ -52,7 +52,8 @@ export const HomePage: React.FC = () => {
   const handleSearchSubmit = (e?: React.FormEvent) => {
     e?.preventDefault();
     if (query.trim()) {
-      navigate(`/kamus?q=${encodeURIComponent(query)}&dir=${direction}`);
+      dictionaryService.addSearchHistory(query.trim(), direction);
+      navigate(`/kamus?q=${encodeURIComponent(query.trim())}&dir=${direction}`);
     }
   };
 

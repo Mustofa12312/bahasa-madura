@@ -30,16 +30,38 @@ export function useDictionarySearch(options: UseDictionarySearchOptions = {}) {
   const limit = options.limit || 18;
   const debouncedQuery = useDebounce(query, 200);
 
-  // Synchronize to URL query parameters
+  // Synchronize to URL query parameters safely without infinite loop
   useEffect(() => {
+    const currentQ = searchParams.get('q') || '';
+    const currentDir = searchParams.get('dir') || 'm2i';
+    const currentLvl = searchParams.get('level') || 'all';
+    const currentCat = searchParams.get('cat') || 'all';
+    const currentP = searchParams.get('page') || '1';
+
+    const newQ = query.trim();
+    const newDir = direction;
+    const newLvl = speechLevel;
+    const newCat = category;
+    const newP = String(page);
+
+    if (
+      currentQ === newQ &&
+      currentDir === newDir &&
+      currentLvl === newLvl &&
+      currentCat === newCat &&
+      (currentP === newP || (page === 1 && !searchParams.has('page')))
+    ) {
+      return; // No parameter difference, do not call setSearchParams
+    }
+
     const params: Record<string, string> = {};
-    if (query.trim()) params.q = query.trim();
-    if (direction !== 'm2i') params.dir = direction;
-    if (speechLevel !== 'all') params.level = speechLevel;
-    if (category !== 'all') params.cat = category;
-    if (page > 1) params.page = String(page);
+    if (newQ) params.q = newQ;
+    if (newDir !== 'm2i') params.dir = newDir;
+    if (newLvl !== 'all') params.level = newLvl;
+    if (newCat !== 'all') params.cat = newCat;
+    if (page > 1) params.page = newP;
     setSearchParams(params, { replace: true });
-  }, [query, direction, speechLevel, category, page, setSearchParams]);
+  }, [query, direction, speechLevel, category, page, searchParams, setSearchParams]);
 
   // Execute Search
   const result: SearchResult = useMemo(() => {

@@ -10,14 +10,17 @@ import {
   GraduationCap, 
   PlusCircle, 
   ShieldCheck, 
-  History 
+  History,
+  User
 } from 'lucide-react';
 import { dictionaryService } from '../../services/dictionaryService';
+import { useAuth } from '../../app/providers/AuthProvider';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [favCount, setFavCount] = useState(0);
   const location = useLocation();
+  const { user, profile } = useAuth();
 
   useEffect(() => {
     const updateFavs = () => {
@@ -127,6 +130,27 @@ export const Navbar: React.FC = () => {
             >
               <ShieldCheck className="w-4 h-4" />
             </Link>
+
+            {user ? (
+              <Link
+                to="/profil"
+                className="flex items-center gap-2 pl-1 pr-3 py-1 rounded-xl bg-ivory-warm border border-madura-border text-xs font-semibold text-navy hover:bg-stone-100 transition-colors"
+                title="Profil Saya"
+              >
+                <div className="w-6 h-6 rounded-lg bg-navy text-gold flex items-center justify-center font-serif font-black text-xs">
+                  {profile?.full_name ? profile.full_name.charAt(0).toUpperCase() : 'U'}
+                </div>
+                <span className="truncate max-w-[90px]">{profile?.full_name || 'Akun'}</span>
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-navy text-white hover:bg-navy-900 transition-colors shadow-xs"
+              >
+                <User className="w-3.5 h-3.5 text-gold-400" />
+                <span>Masuk</span>
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -185,6 +209,23 @@ export const Navbar: React.FC = () => {
               <ShieldCheck className="w-4 h-4 text-stone-400" />
               <span>Dashboard Admin</span>
             </Link>
+            {user ? (
+              <Link
+                to="/profil"
+                className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold bg-navy text-white"
+              >
+                <User className="w-4 h-4 text-gold-400" />
+                <span>Profil Akun ({profile?.full_name || 'User'})</span>
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold bg-navy text-white"
+              >
+                <User className="w-4 h-4 text-gold-400" />
+                <span>Masuk Akun</span>
+              </Link>
+            )}
           </div>
         </div>
       )}

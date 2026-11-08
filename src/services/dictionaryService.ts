@@ -178,11 +178,6 @@ export const dictionaryService = {
       };
     }
 
-    // Record search in history if query is meaningful
-    if (typeof window !== 'undefined' && rawQuery.length >= 2) {
-      this.addSearchHistory(rawQuery, direction);
-    }
-
     // Scored matching
     type Scored = { word: Word; score: number };
     const matches: Scored[] = [];

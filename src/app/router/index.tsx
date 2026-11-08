@@ -20,6 +20,9 @@ const AboutPage = lazy(() => import('../../pages/public/AboutPage').then(m => ({
 const FavoritesPage = lazy(() => import('../../pages/user/FavoritesPage').then(m => ({ default: m.FavoritesPage })));
 const HistoryPage = lazy(() => import('../../pages/user/HistoryPage').then(m => ({ default: m.HistoryPage })));
 const ContributePage = lazy(() => import('../../pages/user/ContributePage').then(m => ({ default: m.ContributePage })));
+const LoginPage = lazy(() => import('../../pages/user/LoginPage').then(m => ({ default: m.LoginPage })));
+const RegisterPage = lazy(() => import('../../pages/user/RegisterPage').then(m => ({ default: m.RegisterPage })));
+const ProfilePage = lazy(() => import('../../pages/user/ProfilePage').then(m => ({ default: m.ProfilePage })));
 
 // Lazy-loaded Admin Pages
 const AdminDashboardPage = lazy(() => import('../../pages/admin/AdminDashboardPage').then(m => ({ default: m.AdminDashboardPage })));
@@ -60,6 +63,9 @@ export const router = createBrowserRouter([
       { path: 'kontribusi', element: withSuspense(ContributePage) },
       { path: 'favorit', element: withSuspense(FavoritesPage) },
       { path: 'riwayat', element: withSuspense(HistoryPage) },
+      { path: 'login', element: withSuspense(LoginPage) },
+      { path: 'register', element: withSuspense(RegisterPage) },
+      { path: 'profil', element: withSuspense(ProfilePage) },
     ],
   },
   {
